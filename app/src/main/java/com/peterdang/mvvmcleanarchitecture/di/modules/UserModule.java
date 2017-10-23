@@ -3,8 +3,12 @@ package com.peterdang.mvvmcleanarchitecture.di.modules;
 import android.app.Activity;
 
 import com.example.repositories.UserRepository;
+import com.peterdang.data.datasource.UserDataSource;
+import com.peterdang.data.datasource.repository.UserRepositoryImp;
 import com.peterdang.domain.usecases.LoginUsecase;
 import com.peterdang.mvvmcleanarchitecture.di.scopes.UserScope;
+
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -26,7 +30,12 @@ public class UserModule implements IUserModule {
     @UserScope
     @Override
     public LoginUsecase provideLoginUserCase(final UserRepository mRepository) {
-        return new LoginUsecase(Schedulers.io(), AndroidSchedulers.mainThread(),
-                mRepository);
+        return new LoginUsecase(Schedulers.io(), AndroidSchedulers.mainThread(), mRepository);
+    }
+
+    @Provides
+    @Singleton
+    public UserRepository provideUserRepository(final UserDataSource remoteSource){
+        return new UserRepositoryImp(remoteSource);
     }
 }

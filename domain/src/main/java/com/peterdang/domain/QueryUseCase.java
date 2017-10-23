@@ -1,6 +1,5 @@
 package com.peterdang.domain;
 
-
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
 

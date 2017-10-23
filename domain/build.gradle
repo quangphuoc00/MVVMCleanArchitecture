@@ -21,7 +21,6 @@ dependencies {
 
     compile project(':databoundary')
     provided domainDependencies.javaxAnnotation
-
     compile domainDependencies.javaxInject
 
     testCompile domainTestDependencies.junit

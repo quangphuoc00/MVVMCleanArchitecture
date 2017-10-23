@@ -62,10 +62,4 @@ public class ApplicationModule {
     public UserDataSource provideRemoteCurrencyDataSource(final RemotingDataAPI remoteDataAPI){
         return new RemoteDataSource(remoteDataAPI);
     }
-
-    @Provides
-    @Singleton
-    public UserRepository provideUserRepository(final UserDataSource remoteSource){
-        return new UserRepositoryImp(remoteSource);
-    }
 }

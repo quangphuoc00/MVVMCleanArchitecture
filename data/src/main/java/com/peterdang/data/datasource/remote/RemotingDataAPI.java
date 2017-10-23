@@ -3,12 +3,12 @@ package com.peterdang.data.datasource.remote;
 import com.example.entities.response.BaseResponse;
 import com.example.entities.response.LoginModel;
 
-import io.reactivex.Observable;
 import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import io.reactivex.Observable;
 
 public interface RemotingDataAPI {
 

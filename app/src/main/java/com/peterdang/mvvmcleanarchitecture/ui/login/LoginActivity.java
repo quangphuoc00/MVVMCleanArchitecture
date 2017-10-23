@@ -1,6 +1,5 @@
 package com.peterdang.mvvmcleanarchitecture.ui.login;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -8,13 +7,15 @@ import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 
 import com.peterdang.mvvmcleanarchitecture.BR;
+import com.peterdang.mvvmcleanarchitecture.MyApplication;
 import com.peterdang.mvvmcleanarchitecture.R;
 import com.peterdang.mvvmcleanarchitecture.base.BaseActivity;
-import com.peterdang.mvvmcleanarchitecture.models.UserModel;
+import com.peterdang.mvvmcleanarchitecture.di.components.UserComponent;
+import com.peterdang.mvvmcleanarchitecture.di.modules.UserModule;
 
 import javax.inject.Inject;
 
-public class LoginActivity extends BaseActivity<> {
+public class LoginActivity extends BaseActivity<UserComponent> {
 
     @Inject
     LoginViewModel mViewModel;
@@ -29,12 +30,11 @@ public class LoginActivity extends BaseActivity<> {
         super.onCreate(savedInstanceState);
         ViewDataBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         binding.setVariable(BR.user, mViewModel);
-        if (!isRetained(savedInstanceState)) {
-            final String currencyCode = getIntent().getStringExtra(INTENT_EXTRA_PARAM_CURRENCY_CODE);
-            Bundle bundle = new Bundle();
-            bundle.putString(CurrencyDetailsViewModel.KEY_CURRENCY_CODE, currencyCode);
-            mViewModel.onLoad(bundle);
-        }
+    }
+
+    @Override
+    protected void injectDependencies(UserComponent activityComponent) {
+        activityComponent.inject(this);
     }
 
     @Override
@@ -46,14 +46,9 @@ public class LoginActivity extends BaseActivity<> {
     }
 
     @Override
-    protected void injectDependencies(final CurrencyDetailsActivitySubComponent activityComponent) {
-        activityComponent.inject(this);
-    }
-
-    protected CurrencyDetailsActivitySubComponent newComponent() {
-        return ((ExchangeRatesApplication) getApplication())
+    protected UserComponent newComponent() {
+        return ((MyApplication) getApplication())
                 .getApplicationComponent()
-                .newCurrencyDetailsActivitySubComponent(new CurrencyDetailsActivityModule(this));
+                .newUserComponent(new UserModule(this));
     }
-
 }

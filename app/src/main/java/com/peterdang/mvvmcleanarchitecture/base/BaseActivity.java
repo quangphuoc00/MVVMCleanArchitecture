@@ -12,11 +12,11 @@ import android.support.v7.app.AppCompatActivity;
  * You can check if activity is created for the first time or recreated due to orientation change
  * via {@link BaseActivity#isRetained(Bundle)} method.
  */
-public abstract class BaseActivity<T> extends AppCompatActivity {
+public abstract class BaseActivity<C> extends AppCompatActivity {
 
     private static final String KEY_IS_RETAINED = "KEY_IS_RETAINED";
 
-    private T mComponent;
+    private C mComponent;
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
@@ -24,17 +24,17 @@ public abstract class BaseActivity<T> extends AppCompatActivity {
         injectDependencies(getActivityComponent());
     }
 
-    protected abstract void injectDependencies(final T activityComponent);
+    protected abstract void injectDependencies(final C activityComponent);
 
     @SuppressWarnings("unchecked")
-    protected T getActivityComponent() {
+    protected C getActivityComponent() {
         if (null != mComponent) {
             return mComponent;
         }
         final Object retainedObject = getLastCustomNonConfigurationInstance();
         if (retainedObject != null) {
             //we are retaining the object, so we can safely cast it to our component class.
-            mComponent = (T) retainedObject;
+            mComponent = (C) retainedObject;
         } else {
             mComponent = newComponent();
         }
@@ -48,7 +48,7 @@ public abstract class BaseActivity<T> extends AppCompatActivity {
      *
      * @return
      */
-    protected abstract T newComponent();
+    protected abstract C newComponent();
 
     @Override
     public Object onRetainCustomNonConfigurationInstance() {

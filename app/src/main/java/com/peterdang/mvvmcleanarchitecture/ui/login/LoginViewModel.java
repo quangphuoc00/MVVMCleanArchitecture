@@ -7,6 +7,8 @@ import com.peterdang.mvvmcleanarchitecture.BR;
 import com.peterdang.mvvmcleanarchitecture.base.BaseDisposableViewModel;
 import com.peterdang.mvvmcleanarchitecture.base.BaseViewModel;
 
+import javax.inject.Inject;
+
 /**
  * Created by phuoc on 2017-10-16.
  */
@@ -15,6 +17,10 @@ public class LoginViewModel extends BaseDisposableViewModel implements BaseViewM
 
     private String username;
     private String password;
+
+    @Inject
+    public LoginViewModel() {
+    }
 
     @Override
     public void onLoad(Bundle bundle) {

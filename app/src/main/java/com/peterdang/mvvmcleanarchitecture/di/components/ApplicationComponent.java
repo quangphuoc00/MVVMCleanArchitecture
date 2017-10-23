@@ -22,7 +22,9 @@ import com.peterdang.data.datasource.remote.RemotingDataAPI;
 import com.peterdang.mvvmcleanarchitecture.di.modules.ApplicationModule;
 import com.peterdang.mvvmcleanarchitecture.base.BaseActivity;
 import com.peterdang.mvvmcleanarchitecture.di.modules.NetModule;
+import com.peterdang.mvvmcleanarchitecture.di.modules.UserModule;
 import com.peterdang.mvvmcleanarchitecture.properties.ApplicationProperties;
+import com.peterdang.mvvmcleanarchitecture.ui.MainActivity;
 
 import javax.inject.Singleton;
 
@@ -36,7 +38,7 @@ import retrofit2.Retrofit;
 @Singleton // Constraints this component to one-per-application or unscoped bindings.
 @Component(modules = {ApplicationModule.class, NetModule.class})
 public interface ApplicationComponent {
-  void inject(BaseActivity baseActivity);
+  void inject(MainActivity baseActivity);
 
   //Exposed to sub-graphs.
   Context context();
@@ -46,4 +48,6 @@ public interface ApplicationComponent {
   Gson gson();
   Retrofit retrofit();
   RemotingDataAPI remotingDataAPI();
+
+  UserComponent newUserComponent(UserModule userModule);
 }

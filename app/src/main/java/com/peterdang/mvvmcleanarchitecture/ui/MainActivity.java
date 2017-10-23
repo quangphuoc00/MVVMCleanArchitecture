@@ -1,11 +1,11 @@
 package com.peterdang.mvvmcleanarchitecture.ui;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.peterdang.mvvmcleanarchitecture.R;
-import com.peterdang.mvvmcleanarchitecture.base.BaseActivity;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -3,8 +3,6 @@ package com.peterdang.mvvmcleanarchitecture.properties;
 import android.content.Context;
 import android.content.res.AssetManager;
 
-import com.peterdang.mvvmcleanarchitecture.R;
-
 import java.io.InputStream;
 import java.util.Properties;
 
