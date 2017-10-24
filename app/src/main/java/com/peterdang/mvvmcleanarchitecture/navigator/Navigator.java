@@ -17,7 +17,8 @@ public class Navigator {
     private Context mContext;
 
     @Inject
-    public Navigator() {
+    public Navigator(Context mContext) {
+        this.mContext = mContext;
     }
 
     public void navigateToLogin() {

@@ -3,6 +3,7 @@ package com.peterdang.mvvmcleanarchitecture.di.components;
 import com.peterdang.mvvmcleanarchitecture.di.modules.UserModule;
 import com.peterdang.mvvmcleanarchitecture.di.scopes.UserScope;
 import com.peterdang.mvvmcleanarchitecture.ui.login.LoginActivity;
+import com.peterdang.mvvmcleanarchitecture.ui.main.MainActivity;
 
 import dagger.Subcomponent;
 
@@ -13,4 +14,5 @@ import dagger.Subcomponent;
 @Subcomponent(modules={UserModule.class})
 public interface UserComponent {
     void inject(LoginActivity loginActivity);
+    void inject(MainActivity mainActivity);
 }

@@ -2,10 +2,14 @@ package com.peterdang.mvvmcleanarchitecture.ui.login;
 
 import android.databinding.Bindable;
 import android.os.Bundle;
+import android.view.View;
 
+import com.peterdang.domain.exceptions.DataEntityException;
+import com.peterdang.domain.usecases.LoginUsecase;
 import com.peterdang.mvvmcleanarchitecture.BR;
 import com.peterdang.mvvmcleanarchitecture.base.BaseDisposableViewModel;
 import com.peterdang.mvvmcleanarchitecture.base.BaseViewModel;
+import com.peterdang.mvvmcleanarchitecture.utils.ToastUtil;
 
 import javax.inject.Inject;
 
@@ -18,8 +22,13 @@ public class LoginViewModel extends BaseDisposableViewModel implements BaseViewM
     private String username;
     private String password;
 
+    LoginUsecase loginUsecase;
+    ToastUtil toastUtil;
+
     @Inject
-    public LoginViewModel() {
+    public LoginViewModel(LoginUsecase loginUsecase, ToastUtil toastUtil) {
+        this.loginUsecase = loginUsecase;
+        this.toastUtil = toastUtil;
     }
 
     @Override
@@ -28,12 +37,12 @@ public class LoginViewModel extends BaseDisposableViewModel implements BaseViewM
     }
 
     @Bindable
-    public String getUsername(){
+    public String getUsername() {
         return username;
     }
 
     @Bindable
-    public String getPassword(){
+    public String getPassword() {
         return password;
     }
 
@@ -45,5 +54,20 @@ public class LoginViewModel extends BaseDisposableViewModel implements BaseViewM
     public void setPassword(final String password) {
         this.password = password;
         notifyPropertyChanged(BR.password);
+    }
+
+    public void onLoginClicked(View view) {
+        LoginUsecase.LoginParam loginParam = new LoginUsecase.LoginParam(username, password);
+        try {
+            loginParam.isValid();
+            addDisposable(
+                    loginUsecase.run(loginParam)
+                            .subscribe(loginModelBaseResponse -> {
+
+                            })
+            );
+        } catch (DataEntityException e) {
+            toastUtil.show(e.getMessage());
+        }
     }
 }

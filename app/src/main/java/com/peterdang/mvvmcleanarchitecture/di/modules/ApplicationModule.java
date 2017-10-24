@@ -20,11 +20,10 @@ import android.content.Context;
 import com.peterdang.data.datasource.UserDataSource;
 import com.peterdang.data.datasource.remote.RemoteDataSource;
 import com.peterdang.data.datasource.remote.RemotingDataAPI;
-import com.peterdang.data.datasource.repository.UserRepositoryImp;
-import com.example.repositories.UserRepository;
 import com.peterdang.mvvmcleanarchitecture.MyApplication;
 import com.peterdang.mvvmcleanarchitecture.properties.ApplicationProperties;
 import com.peterdang.mvvmcleanarchitecture.properties.ApplicationPropertiesImp;
+import com.peterdang.mvvmcleanarchitecture.utils.ToastUtil;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -47,6 +46,12 @@ public class ApplicationModule {
     @Singleton
     Context provideApplicationContext() {
         return this.application;
+    }
+
+    @Provides
+    @Singleton
+    ToastUtil provideToastUtil(Context context) {
+        return new ToastUtil(context);
     }
 
     @Provides

@@ -20,11 +20,10 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.peterdang.data.datasource.remote.RemotingDataAPI;
 import com.peterdang.mvvmcleanarchitecture.di.modules.ApplicationModule;
-import com.peterdang.mvvmcleanarchitecture.base.BaseActivity;
 import com.peterdang.mvvmcleanarchitecture.di.modules.NetModule;
 import com.peterdang.mvvmcleanarchitecture.di.modules.UserModule;
 import com.peterdang.mvvmcleanarchitecture.properties.ApplicationProperties;
-import com.peterdang.mvvmcleanarchitecture.ui.MainActivity;
+import com.peterdang.mvvmcleanarchitecture.ui.main.MainActivity;
 
 import javax.inject.Singleton;
 
