@@ -1,5 +1,6 @@
 package com.peterdang.mvvmcleanarchitecture.ui.main;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
@@ -17,10 +18,13 @@ public class MainViewModel extends BaseDisposableViewModel implements BaseViewMo
 
     @Inject
     Navigator mNavigator;
+    @Inject
+    Activity activity;
 
     @Inject
-    public MainViewModel(Navigator navigator) {
+    public MainViewModel(Navigator navigator, Activity activity) {
         this.mNavigator = navigator;
+        this.activity = activity;
     }
 
     @Override
@@ -29,6 +33,6 @@ public class MainViewModel extends BaseDisposableViewModel implements BaseViewMo
     }
 
     public void onLoginClick(View view){
-        mNavigator.navigateToLogin();
+        mNavigator.navigateToLogin(activity);
     }
 }

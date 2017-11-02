@@ -1,6 +1,7 @@
 package com.peterdang.mvvmcleanarchitecture.di.modules;
 
 import com.google.gson.Gson;
+import com.peterdang.data.datasource.remote.RemoteDataSource;
 import com.peterdang.data.datasource.remote.RemotingDataAPI;
 import com.peterdang.mvvmcleanarchitecture.properties.ApplicationProperties;
 
@@ -15,4 +16,6 @@ interface INetModule {
     Retrofit provideRetrofit(Gson gson, ApplicationProperties propertiesManager, OkHttpClient client);
 
     RemotingDataAPI provideRemotingDataAPI(Retrofit retrofit);
+
+    RemoteDataSource provideRemoteCurrencyDataSource(RemotingDataAPI remoteDataAPI);
 }

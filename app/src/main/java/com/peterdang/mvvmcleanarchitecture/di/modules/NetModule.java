@@ -2,6 +2,7 @@ package com.peterdang.mvvmcleanarchitecture.di.modules;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.peterdang.data.datasource.remote.RemoteDataSource;
 import com.peterdang.data.datasource.remote.RemotingDataAPI;
 import com.peterdang.mvvmcleanarchitecture.BuildConfig;
 import com.peterdang.mvvmcleanarchitecture.properties.ApplicationProperties;
@@ -60,5 +61,11 @@ public class NetModule implements INetModule{
     @Singleton
     public RemotingDataAPI provideRemotingDataAPI(Retrofit retrofit){
         return retrofit.create(RemotingDataAPI.class);
+    }
+
+    @Provides
+    @Singleton
+    public RemoteDataSource provideRemoteCurrencyDataSource(final RemotingDataAPI remoteDataAPI){
+        return new RemoteDataSource(remoteDataAPI);
     }
 }

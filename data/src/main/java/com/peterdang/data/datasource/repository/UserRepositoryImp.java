@@ -3,14 +3,14 @@ package com.peterdang.data.datasource.repository;
 import com.example.entities.response.BaseResponse;
 import com.example.entities.response.LoginModel;
 import com.example.repositories.UserRepository;
-import com.peterdang.data.datasource.UserDataSource;
+import com.peterdang.data.datasource.remote.RemoteDataSource;
 
 import io.reactivex.Observable;
 
 public class UserRepositoryImp implements UserRepository {
-    private UserDataSource mRemoteSource;
+    private RemoteDataSource mRemoteSource;
 
-    public UserRepositoryImp(final UserDataSource remoteSource) {
+    public UserRepositoryImp(final RemoteDataSource remoteSource) {
         mRemoteSource = remoteSource;
     }
 

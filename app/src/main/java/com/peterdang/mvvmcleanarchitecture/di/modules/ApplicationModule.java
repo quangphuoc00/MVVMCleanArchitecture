@@ -17,10 +17,8 @@ package com.peterdang.mvvmcleanarchitecture.di.modules;
 
 import android.content.Context;
 
-import com.peterdang.data.datasource.UserDataSource;
-import com.peterdang.data.datasource.remote.RemoteDataSource;
-import com.peterdang.data.datasource.remote.RemotingDataAPI;
 import com.peterdang.mvvmcleanarchitecture.MyApplication;
+import com.peterdang.mvvmcleanarchitecture.navigator.Navigator;
 import com.peterdang.mvvmcleanarchitecture.properties.ApplicationProperties;
 import com.peterdang.mvvmcleanarchitecture.properties.ApplicationPropertiesImp;
 import com.peterdang.mvvmcleanarchitecture.utils.ToastUtil;
@@ -60,11 +58,9 @@ public class ApplicationModule {
         return new ApplicationPropertiesImp(context);
     }
 
-
     @Provides
     @Singleton
-    @Named("remote")
-    public UserDataSource provideRemoteCurrencyDataSource(final RemotingDataAPI remoteDataAPI){
-        return new RemoteDataSource(remoteDataAPI);
+    public Navigator provideNavigator(){
+        return new Navigator();
     }
 }

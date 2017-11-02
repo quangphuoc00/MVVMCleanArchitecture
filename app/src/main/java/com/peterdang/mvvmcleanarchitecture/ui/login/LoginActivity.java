@@ -10,19 +10,30 @@ import com.peterdang.mvvmcleanarchitecture.BR;
 import com.peterdang.mvvmcleanarchitecture.MyApplication;
 import com.peterdang.mvvmcleanarchitecture.R;
 import com.peterdang.mvvmcleanarchitecture.base.BaseActivity;
+import com.peterdang.mvvmcleanarchitecture.di.components.DaggerUserComponent;
 import com.peterdang.mvvmcleanarchitecture.di.components.UserComponent;
 import com.peterdang.mvvmcleanarchitecture.di.modules.UserModule;
 
 import javax.inject.Inject;
 
-public class LoginActivity extends BaseActivity<UserComponent> {
+public class LoginActivity extends BaseActivity {
 
     @Inject
     LoginViewModel mViewModel;
 
+    UserComponent userComponent;
+
     public static Intent getCallingIntent(Context context) {
         Intent callingIntent = new Intent(context, LoginActivity.class);
         return callingIntent;
+    }
+
+
+    private void initializeInjector() {
+        this.userComponent = DaggerUserComponent.builder()
+                .applicationComponent(getApplicationComponent())
+                .activityModule(getActivityModule())
+                .build();
     }
 
     @Override
@@ -30,11 +41,9 @@ public class LoginActivity extends BaseActivity<UserComponent> {
         super.onCreate(savedInstanceState);
         ViewDataBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         binding.setVariable(BR.user, mViewModel);
-    }
 
-    @Override
-    protected void injectDependencies(UserComponent activityComponent) {
-        activityComponent.inject(this);
+        initializeInjector();
+        userComponent.inject(this);
     }
 
     @Override
@@ -43,12 +52,5 @@ public class LoginActivity extends BaseActivity<UserComponent> {
             mViewModel.dispose();
         }
         super.onDestroy();
-    }
-
-    @Override
-    protected UserComponent newComponent() {
-        return ((MyApplication) getApplication())
-                .getApplicationComponent()
-                .newUserComponent(new UserModule(this));
     }
 }

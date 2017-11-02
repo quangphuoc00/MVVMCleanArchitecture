@@ -19,6 +19,7 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.peterdang.data.datasource.remote.RemotingDataAPI;
+import com.peterdang.mvvmcleanarchitecture.base.BaseActivity;
 import com.peterdang.mvvmcleanarchitecture.di.modules.ApplicationModule;
 import com.peterdang.mvvmcleanarchitecture.di.modules.NetModule;
 import com.peterdang.mvvmcleanarchitecture.di.modules.UserModule;
@@ -37,7 +38,7 @@ import retrofit2.Retrofit;
 @Singleton // Constraints this component to one-per-application or unscoped bindings.
 @Component(modules = {ApplicationModule.class, NetModule.class})
 public interface ApplicationComponent {
-  void inject(MainActivity baseActivity);
+  void inject(BaseActivity baseActivity);
 
   //Exposed to sub-graphs.
   Context context();
@@ -47,6 +48,4 @@ public interface ApplicationComponent {
   Gson gson();
   Retrofit retrofit();
   RemotingDataAPI remotingDataAPI();
-
-  UserComponent newUserComponent(UserModule userModule);
 }
