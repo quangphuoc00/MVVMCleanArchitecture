@@ -21,6 +21,7 @@ import com.peterdang.mvvmcleanarchitecture.MyApplication;
 import com.peterdang.mvvmcleanarchitecture.navigator.Navigator;
 import com.peterdang.mvvmcleanarchitecture.properties.ApplicationProperties;
 import com.peterdang.mvvmcleanarchitecture.properties.ApplicationPropertiesImp;
+import com.peterdang.mvvmcleanarchitecture.ui.login.LoginViewModel;
 import com.peterdang.mvvmcleanarchitecture.utils.ToastUtil;
 
 import javax.inject.Named;

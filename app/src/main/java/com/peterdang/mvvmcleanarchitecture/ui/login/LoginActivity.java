@@ -7,12 +7,10 @@ import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 
 import com.peterdang.mvvmcleanarchitecture.BR;
-import com.peterdang.mvvmcleanarchitecture.MyApplication;
 import com.peterdang.mvvmcleanarchitecture.R;
 import com.peterdang.mvvmcleanarchitecture.base.BaseActivity;
 import com.peterdang.mvvmcleanarchitecture.di.components.DaggerUserComponent;
 import com.peterdang.mvvmcleanarchitecture.di.components.UserComponent;
-import com.peterdang.mvvmcleanarchitecture.di.modules.UserModule;
 
 import javax.inject.Inject;
 
@@ -39,11 +37,12 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ViewDataBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
-        binding.setVariable(BR.user, mViewModel);
 
         initializeInjector();
         userComponent.inject(this);
+
+        ViewDataBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
+        binding.setVariable(BR.user, mViewModel);
     }
 
     @Override

@@ -18,6 +18,8 @@ import javax.inject.Inject;
  */
 
 public class LoginViewModel extends BaseDisposableViewModel implements BaseViewModel {
+    private static final String KEY_USERNAME = "key_username";
+    private static final String KEY_PASSWORD = "key_password";
 
     private String username;
     private String password;
@@ -27,13 +29,14 @@ public class LoginViewModel extends BaseDisposableViewModel implements BaseViewM
 
     @Inject
     public LoginViewModel(LoginUsecase loginUsecase, ToastUtil toastUtil) {
-        this.loginUsecase = loginUsecase;
+        this.loginUsecase = loginUseckase;
         this.toastUtil = toastUtil;
     }
 
     @Override
     public void onLoad(Bundle bundle) {
-
+        setPassword(KEY_PASSWORD);
+        setUsername(KEY_USERNAME);
     }
 
     @Bindable
@@ -50,7 +53,6 @@ public class LoginViewModel extends BaseDisposableViewModel implements BaseViewM
         this.username = username;
         notifyPropertyChanged(BR.username);
     }
-
     public void setPassword(final String password) {
         this.password = password;
         notifyPropertyChanged(BR.password);

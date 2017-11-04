@@ -49,7 +49,8 @@ public class NetModule implements INetModule{
     @Singleton
     public Retrofit provideRetrofit(Gson gson, ApplicationProperties propertiesManager, OkHttpClient client) {
         return new Retrofit.Builder()
-                .baseUrl(propertiesManager.baseUrl())
+        .baseUrl("http://test-test.domainname.com")
+//                .baseUrl(propertiesManager.baseUrl())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(client)

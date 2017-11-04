@@ -7,6 +7,8 @@ import com.peterdang.data.datasource.remote.RemoteDataSource;
 import com.peterdang.data.datasource.repository.UserRepositoryImp;
 import com.peterdang.domain.usecases.LoginUsecase;
 import com.peterdang.mvvmcleanarchitecture.di.scopes.PerActivity;
+import com.peterdang.mvvmcleanarchitecture.ui.login.LoginViewModel;
+import com.peterdang.mvvmcleanarchitecture.utils.ToastUtil;
 
 import javax.inject.Singleton;
 

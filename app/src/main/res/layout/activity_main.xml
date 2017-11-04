@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="model"
+            name="mainViewModel"
             type="com.peterdang.mvvmcleanarchitecture.ui.main.MainViewModel" />
     </data>
 
@@ -18,7 +18,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{model::onLoginClick}"
+            android:onClick="@{mainViewModel.onLoginClick}"
             android:text="Login" />
 
     </RelativeLayout>

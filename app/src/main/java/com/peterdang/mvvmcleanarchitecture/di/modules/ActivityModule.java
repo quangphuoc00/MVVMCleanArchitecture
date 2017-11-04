@@ -18,7 +18,14 @@ package com.peterdang.mvvmcleanarchitecture.di.modules;
 import android.app.Activity;
 import android.content.Context;
 
+import com.peterdang.domain.usecases.LoginUsecase;
 import com.peterdang.mvvmcleanarchitecture.di.scopes.PerActivity;
+import com.peterdang.mvvmcleanarchitecture.navigator.Navigator;
+import com.peterdang.mvvmcleanarchitecture.ui.login.LoginViewModel;
+import com.peterdang.mvvmcleanarchitecture.ui.main.MainViewModel;
+import com.peterdang.mvvmcleanarchitecture.utils.ToastUtil;
+
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -39,5 +46,17 @@ public class ActivityModule {
    */
   @Provides @PerActivity Activity activity() {
     return this.activity;
+  }
+
+  @Provides
+  @PerActivity
+  public MainViewModel provideMainViewModel(Navigator navigator, Activity activity){
+    return new MainViewModel(navigator, activity);
+  }
+
+  @Provides
+  @PerActivity
+  public LoginViewModel provideLoginViewModel(LoginUsecase loginUsecase, ToastUtil toastUtil){
+    return new LoginViewModel(loginUsecase, toastUtil);
   }
 }

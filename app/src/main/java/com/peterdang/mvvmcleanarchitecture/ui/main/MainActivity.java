@@ -24,10 +24,12 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ViewDataBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        binding.setVariable(BR.model, mViewModel);
 
         this.initializeInjector();
+        userComponent.inject(this);
+
+        ViewDataBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        binding.setVariable(BR.mainViewModel, mViewModel);
     }
 
     private void initializeInjector() {
